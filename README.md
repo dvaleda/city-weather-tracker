@@ -1,16 +1,15 @@
-1. interpolation/one-way binding - Da, src/components/WeatherCard.vue, :3–10, prikazuje city, temp, condition
-2. two-way binding - Da, src/components/SearchBar.vue, :6–8, v-model="cityInput"
-3. methods - Da, src/components/SearchBar.vue, :9–13, submitCity(); src/views/Home.vue, :22–25, handleSearch()
-4. computed properties - Da, src/views/Home.vue, :26–28, reactive cityCount preko weatherStore.cities.length
-5. scoped styles - Da, src/components/WeatherCard.vue, :13–27; src/components/SearchBar.vue, :14–33; src/views/About.vue, :16–36
-6. lifecycle hook - Da, src/views/Home.vue, :20–22, onMounted(); src/views/WeatherDetails.vue, :12–16, onMounted()
-7. routing (više stranica) - Da, src/router/index.js, :10–22, Home, WeatherDetails, About, NotFound
-bookmarkable routing - Da, /weather/:city i /about rade direktno u browseru
-dynamic routing + 404 catch-all - Da, src/router/index.js, :18–22, catch-all ruta NotFound.vue
-8. stateless komponenta (props) - Da, src/components/WeatherCard.vue, :3–10, prima city, temp, condition
-stateful komponenta - Da, src/components/SearchBar.vue, :6–8, data() cityInput; Pinia store src/stores/weatherStore.js
-9. emit event - Da, src/components/SearchBar.vue, :10–12, emit 'search'; src/views/Home.vue, :22–25, listener handleSearch()
-10. Pinia store - Da, src/stores/weatherStore.js, :6–28, state: cities/loading/error; actions fetchWeather()
-11. async dohvat podataka - Da, src/stores/weatherStore.js, :10–24, mock async fetch sa Promise i setTimeout
-lazy loading - Da, src/router/index.js, :7–9, WeatherDetails.vue i About.vue lazy loaded
-loading / error prikaz - Da, src/views/Home.vue, :13–16, <div v-if="weatherStore.loading">Loading...</div>, <div v-if="weatherStore.error">
+1. interpolation/one-way binding - Da, src/components/WeatherCard.vue, :3–5, interpolacija se koristi za prikaz podataka proslijeđenih preko propsa
+2. two-way binding - Da, src/components/SearchBar.vue, :3, v-model="cityInput" varijabla cityInput je dvosmjerno povezana s input poljem putem v-model
+3. methods - Da, src/components/SearchBar.vue, :12, submitCity()
+4. computed properties - Da, src/views/Home.vue, :47, computed svojstvo hasCities
+5. scoped styles - Da, src/components/WeatherCard.vue, :26; src/components/SearchBar.vue, :22; src/views/About.vue, :23; src/views/Home.vue, :54
+6. lifecycle hook - Da, src/views/Home.vue, :39, onMounted(); src/views/WeatherDetails.vue, :33, onMounted() lifecycle hook se koristi za inicijalni dohvat podataka
+7. routing (više stranica) - Da, src/router/index.js, :9–13, definirane rute: /, /about, /weather/:city
+bookmarkable routing - Da, src/router/index.js, :17 createWebHistory() i rute rade direktno u browseru (npr. /weather/Zagreb)
+dynamic routing + 404 catch-all - Da, src/router/index.js, :13, nevažeće rute vode na 404 stranicu
+8. stateless komponenta (props) - Da, src/components/WeatherCard.vue, :3–18, koristi props (city, temp, condition) i nema vlastito stanje
+stateful komponenta - Da, src/components/SearchBar.vue, :3-15, koristi lokalni state cityInput
+9. emit event - Da, src/components/SearchBar.vue, :14, event search emitira se roditeljskoj komponenti (Home.vue)
+10. Pinia store - Da, src/stores/weatherStore.js, :5–44, globalno stanje (cities, loading, error) i fetchWeather()
+11. async dohvat podataka - Da, src/stores/weatherStore.js, :17, :22, podaci su mockani u memoriji, ali dohvat je asinkron
+lazy loading - Da, src/router/index.js, :6-7, WeatherDetails i About se učitavaju po potrebi (lazy loading)
